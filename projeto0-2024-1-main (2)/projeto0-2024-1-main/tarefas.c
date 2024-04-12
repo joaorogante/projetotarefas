@@ -75,21 +75,16 @@ ERROS listar(Tarefa tarefas[], int *pos) {
     return OK;
 }
 
-ERROS salvar(Tarefa tarefas[], int *pos){
-    FILE *f = fopen("tarefas.bin", "wb");
-    if(f == NULL)
-        return ABRIR;
+ERROS salvar(Tarefa tarefas[], int *pos, const char *filename) {
+    FILE *f = fopen(filename, "wb"); 
+    if (f == NULL)
+        return ABRIR; 
 
-    int qtd = fwrite(tarefas, TOTAL, sizeof(Tarefa), f);
-    if(qtd == 0)
-        return ESCREVER;
+    fwrite(tarefas, sizeof(Tarefa), *pos, f); 
+    fwrite(pos, sizeof(int), 1, f); 
 
-    qtd = fwrite(pos, 1, sizeof(int), f);
-    if(qtd == 0)
-        return ESCREVER;
-
-    if(fclose(f))
-        return FECHAR;
+    if (fclose(f)) 
+        return FECHAR; 
 
     return OK;
 }
