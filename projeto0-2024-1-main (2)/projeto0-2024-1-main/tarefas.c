@@ -89,24 +89,18 @@ ERROS salvar(Tarefa tarefas[], int *pos, const char *filename) {
     return OK;
 }
 
-ERROS carregar(Tarefa tarefas[], int *pos){
-    FILE *f = fopen("tarefas.bin", "rb");
-    if(f == NULL)
-        return ABRIR;
+ERROS carregar(Tarefa tarefas[], int *pos, const char *filename) {
+    FILE *f = fopen(filename, "rb"); 
+    if (f == NULL)
+        return ABRIR; 
 
-    int qtd = fread(tarefas, TOTAL, sizeof(Tarefa), f);
-    if(qtd == 0)
-        return LER;
+    fread(tarefas, sizeof(Tarefa), TOTAL, f); 
+    fread(pos, sizeof(int), 1, f); 
 
-    qtd = fread(pos, 1, sizeof(int), f);
-    if(qtd == 0)
-        return LER;
-
-    if(fclose(f))
-        return FECHAR;
+    if (fclose(f)) 
+        return FECHAR; 
 
     return OK;
-
 }
 
 void clearBuffer(){
