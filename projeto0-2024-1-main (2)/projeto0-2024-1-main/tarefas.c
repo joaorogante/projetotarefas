@@ -3,12 +3,13 @@
 #include "tarefas.h"
 
 ERROS criar(Tarefa tarefas[], int *pos) {
-    
+
     if (*pos >= TOTAL)
         return MAX_TAREFA;
 
     printf("Entre com a prioridade (1-10): ");
     scanf("%d", &tarefas[*pos].prioridade);
+    getchar();  
     if (tarefas[*pos].prioridade < 1 || tarefas[*pos].prioridade > 10) {
         printf("Prioridade deve estar entre 1 e 10.\n");
         return PRIORIDADE_INVALIDA;
