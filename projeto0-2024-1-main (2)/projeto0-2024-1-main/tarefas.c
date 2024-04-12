@@ -107,6 +107,7 @@ ERROS exportar(Tarefa tarefas[], int pos, const char *filename) {
     if (f == NULL)
         return ABRIR; 
 
+
     for (int i = 0; i < pos; i++) {
         fprintf(f, "Prioridade: %d, Categoria: %s, Descrição: %s\n",
                 tarefas[i].prioridade, tarefas[i].categoria, tarefas[i].descricao);
@@ -117,7 +118,4 @@ ERROS exportar(Tarefa tarefas[], int pos, const char *filename) {
 
     return OK;
 }
-void clearBuffer(){
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
+
