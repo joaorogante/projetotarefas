@@ -8,7 +8,7 @@ int main() {
 
     erro = carregar(tarefas, &pos, "tarefas.bin");
     if (erro != OK) {
-        printf("Erro ao carregar tarefas: %d\n", erro);
+        printf("", erro);
         pos = 0;
     }
 
